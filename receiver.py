@@ -15,9 +15,11 @@ def add_message(uuid):
     image = base64.b64decode(enc_image)
 
     # decode style image
-    enc_style = base64.b64decode(enc_image)
+    enc_style = content['style'].encode('utf-8')
     style = base64.b64decode(enc_style)
 
+
+    # save images
 
     with open(str(Path.home()) + '/project/ImageController/input/image' + '.jpg', 'wb+') as f:
         f.write(image)
@@ -25,9 +27,8 @@ def add_message(uuid):
     with open(str(Path.home()) + '/project/ImageController/input/style' + '.jpg', 'wb+') as f:
         f.write(style)
 
-    #subprocess.call(['python3', 'test.py'])
      
-    subprocess.Popen(['python3', 'test.py'])
+    subprocess.Popen(['python3', 'handler.py'])
     
     return jsonify({"uuid": uuid})
 
